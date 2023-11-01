@@ -1,0 +1,68 @@
+/* Importing Google Fonts to be used for CSS styling */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap');
+
+/* Includes media query to keep design and styling consistent, regardless of device and screen size */
+/* Also using grid-auto-rows: min-content to take up little amount of space without overflowing */
+@media screen {
+
+    #title {
+        color:blue;
+        font-family: 'Bungee', cursive;
+        font-size: 100px;
+        text-align: center;
+        background-color:rgb(99, 173, 242);
+        padding-top: 20px;
+        padding-bottom: 20px;
+        grid-auto-rows: min-content;
+    }
+
+    /* Setting up a Flexbox grid to have a clean display for our links to other pages */
+    #list {
+        background-color: lavender;
+        font-family: 'Titillium Web', sans-serif;
+        text-align: center;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-around;
+        row-gap: 20px;
+        column-gap: 100px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        grid-auto-rows: min-content;
+    }
+
+    #subtitle {
+        color:blueviolet;
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 50px;
+        text-align: center;
+        grid-auto-rows: min-content;
+    }
+
+    #image {
+        text-align: center;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 30%;
+        border-radius: 30px;
+        grid-auto-rows: min-content;
+    }
+
+    /* Setting up a Flexbox grid to have a clean display for the form*/
+    #form {
+        background-color: rgb(189, 189, 251);
+        font-family: 'Titillium Web', sans-serif;
+        text-align: center;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-around;
+        row-gap: 20px;
+        column-gap: 100px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        grid-auto-rows: min-content;
+    }
+}

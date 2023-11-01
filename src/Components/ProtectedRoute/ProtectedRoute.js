@@ -1,4 +1,4 @@
-import React from "react";
+/*import React from "react";
 import { useNavigate } from "react-router-dom";
 import { checkUser } from "../Auth/AuthService";
 
@@ -15,6 +15,30 @@ const ProtectedRoute = ({ element: Component, ...rest }) => {
     return (
       <div>
         <p>Unauthorized!</p> <button onClick={goBackHandler}>Go Back.</button>
+      </div>
+    );
+  }
+};
+
+export default ProtectedRoute;*/
+
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { checkUser } from "../Auth/AuthService";
+
+const ProtectedRoute = (props) => {
+  const navigate = useNavigate();
+  const goBackHandler = () => {
+    navigate("/auth");
+  };
+
+  if (checkUser()) {
+    return React.cloneElement(props.element);
+  } else {
+    return (
+      <div>
+        <p>Unauthorized!</p>
+        <button onClick={goBackHandler}>Go Back.</button>
       </div>
     );
   }
