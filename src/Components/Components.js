@@ -10,11 +10,11 @@ import AuthRegister from "./Auth/AuthRegister";
 import AuthLogin from "./Auth/AuthLogin";
 import ProtectedRoute from "./ProtectedRoute/ProtectedRoute.js";
 import HomePage from "./Main/Main.js"
-import OverviewPage from "./Overview/Overview";
-import TrackingPage from "./Tracking/Tracking";
-import GoalsPage from "./Goals/Goals";
-import PremiumPage from "./Premium/Premium";
-import Header from "./Header/Header";
+import OverviewPage from "./Overview/Overview.js";
+import TrackingPage from "./Tracking/Tracking.js";
+import GoalsPage from "./Goals/Goals.js";
+import PremiumPage from "./Premium/Premium.js";
+import Header from "./Header/Header.js";
 
 export default function Components() {
   return (
@@ -26,23 +26,23 @@ export default function Components() {
           <Route path="/auth/login" element={<AuthLogin />} />
           <Route
             path="/"
-            element={<ProtectedRoute path="/" element={<HomePage />} />}
+            element={<ProtectedRoute element={<HomePage />} />}
           />
           <Route
             path="/overview"
-            element={<ProtectedRoute path="/overview" element={<OverviewPage />} />}
+            element={<ProtectedRoute element={<OverviewPage />} />}
           />
           <Route
             path="/tracking"
-            element={<ProtectedRoute path="/tracking" element={<TrackingPage />} />}
+            element={<ProtectedRoute element={<TrackingPage />} />}
           />
           <Route
             path="/goals"
-            element={<ProtectedRoute path="/goals" element={<GoalsPage />} />}
+            element={<ProtectedRoute element={<GoalsPage />} />}
           />
           <Route
             path="/premium"
-            element={<ProtectedRoute path="/premium" element={<PremiumPage />} />}
+            element={<ProtectedRoute element={<PremiumPage />} />}
           />
           <Route path="*" element={<Navigate to="/auth" replace />} />
         </Routes>
