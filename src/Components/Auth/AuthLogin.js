@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { checkUser, loginUser } from "./AuthService";
 import AuthForm from "./AuthForm";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link  } from "react-router-dom";
+
+import '../../Style/Log.css'; 
 
 const AuthLogin = () => {
   const navigate = useNavigate();
@@ -64,6 +66,8 @@ const AuthLogin = () => {
         onChange={onChangeHandler}
         onSubmit={onSubmitHandler}
       />
+      <Link to="/auth/register" className="signup">Don't have an account? Sign Up</Link>
+      
     </div>
   );
 };

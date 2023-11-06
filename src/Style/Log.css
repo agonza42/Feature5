@@ -1,0 +1,86 @@
+/* Style/Log.css */
+
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background: #f4f7f6;
+    color: #444;
+    -webkit-font-smoothing: antialiased;
+  }
+  
+  .auth-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+  }
+  
+  .auth-form {
+    width: 100%;
+    max-width: 320px;
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+  }
+  
+  .auth-form:hover {
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .auth-form h2 {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 500;
+    color: #333;
+  }
+  
+  .auth-form .form-control {
+    background: #eaeaea;
+    border: none;
+    border-bottom: 2px solid transparent;
+    border-radius: 0;
+    font-size: 16px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .auth-form .form-control:focus {
+    background: #e8f0fe;
+    border-bottom: 2px solid #007bff;
+  }
+  
+  .auth-form button {
+    width: 100%;
+    padding: 15px;
+    font-size: 18px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .auth-form button:hover {
+    background-color: #0056b3;
+  }
+  
+  .auth-form .signup {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .auth-form .signup:hover {
+    color: #0056b3;
+  }
+  

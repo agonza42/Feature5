@@ -8,6 +8,7 @@ import {
 import AuthModule from "./Auth/Auth.js";
 import AuthRegister from "./Auth/AuthRegister";
 import AuthLogin from "./Auth/AuthLogin";
+import Logout from "./Auth/Logout"
 import ProtectedRoute from "./ProtectedRoute/ProtectedRoute.js";
 import HomePage from "./Main/Main.js"
 import OverviewPage from "./Overview/Overview.js";
@@ -24,6 +25,8 @@ export default function Components() {
           <Route path="/auth" element={<AuthModule />} />
           <Route path="/auth/register" element={<AuthRegister />} />
           <Route path="/auth/login" element={<AuthLogin />} />
+
+          <Route path="/logout" element={<Logout />} />
           <Route
             path="/"
             element={<ProtectedRoute element={<HomePage />} />}
