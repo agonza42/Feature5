@@ -43,3 +43,15 @@ export const loginUser = (currUser) => {
 export const checkUser = () => {
   return Parse.User.current()?.authenticated;
 };
+
+// Logout function
+export const logoutUser = () => {
+  return Parse.User.logOut()
+    .then(() => {
+      // Successfully logged out
+    })
+    .catch((error) => {
+      // Show an error alert if something goes wrong during the logout process
+      alert(`Error: ${error.message}`);
+    });
+};
