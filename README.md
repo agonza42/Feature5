@@ -1,2 +1,5 @@
 # Feature5
-Created with CodeSandbox
+
+FitSnap
+
+Authors: Andres Gonzalez (Student A) and Mariana Gonzalez (Student B)

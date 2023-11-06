@@ -1,7 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { logoutUser } from './AuthService';
+import { logoutUser } from '../../Common/Services/AuthService';
 
+// Function for user log-out functionality
 const Logout = () => {
   const navigate = useNavigate();
 
@@ -12,6 +13,7 @@ const Logout = () => {
     });
   };
 
+  // Call handleLogout function
   return (
     handleLogout()
   );

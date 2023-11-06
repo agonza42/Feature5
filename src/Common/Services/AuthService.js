@@ -1,6 +1,6 @@
 import Parse from "parse";
 
-// used in auth register component
+// Authentication service used in AuthRegister component
 export const createUser = (newUser) => {
   const user = new Parse.User();
 
@@ -21,7 +21,7 @@ export const createUser = (newUser) => {
     });
 };
 
-// used in auth login component
+// Function to log-in users, used in AuthLogin component
 export const loginUser = (currUser) => {
   const user = new Parse.User();
 
@@ -40,11 +40,12 @@ export const loginUser = (currUser) => {
     });
 };
 
+// Function to check if a user has been authenticated
 export const checkUser = () => {
   return Parse.User.current()?.authenticated;
 };
 
-// Logout function
+// Function to log users out
 export const logoutUser = () => {
   return Parse.User.logOut()
     .then(() => {

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { checkUser, createUser } from "./AuthService";
+import { checkUser, createUser } from "../../Common/Services/AuthService";
 import AuthForm from "./AuthForm";
 import { useNavigate, Link } from "react-router-dom";
 
+// Function for registering a new user
 const AuthRegister = () => {
   const navigate = useNavigate();
 
@@ -13,10 +14,10 @@ const AuthRegister = () => {
     password: ""
   });
 
-  // flags in the state to watch for add/remove updates
+  // Flags in the state to watch for add/remove updates
   const [add, setAdd] = useState(false);
 
-  // redirect already authenticated users back to home
+  // Redirect already authenticated users back to home
   useEffect(() => {
     if (checkUser()) {
       alert("You are already logged in");
@@ -35,12 +36,13 @@ const AuthRegister = () => {
           );
           navigate("/");
         }
-        // TODO: redirect user to main app
+        
         setAdd(false);
       });
     }
   }, [navigate, newUser, add]);
 
+  // Function to handle changes in values
   const onChangeHandler = (e) => {
     e.preventDefault();
     console.log(e.target);
@@ -53,6 +55,7 @@ const AuthRegister = () => {
     });
   };
 
+  // Function to handle form submissions
   const onSubmitHandler = (e) => {
     e.preventDefault();
     console.log("submitted: ", e.target);

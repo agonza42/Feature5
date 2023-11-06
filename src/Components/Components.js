@@ -17,6 +17,7 @@ import GoalsPage from "./Goals/Goals.js";
 import PremiumPage from "./Premium/Premium.js";
 import Header from "./Header/Header.js";
 
+// Function to define routes to different components, including protected route definitions
 export default function Components() {
   return (
     <Router>

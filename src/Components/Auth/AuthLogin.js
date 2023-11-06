@@ -1,20 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { checkUser, loginUser } from "./AuthService";
+import { checkUser, loginUser } from "../../Common/Services/AuthService";
 import AuthForm from "./AuthForm";
 import { useNavigate, Link  } from "react-router-dom";
 
+// Import CSS stylesheet
 import '../../Style/Log.css'; 
 
+// Function for log-in functionality for users
 const AuthLogin = () => {
   const navigate = useNavigate();
 
-  // redirect already authenticated users back to home
+  // Redirect already authenticated users back to home
   const [currentUser, setCurrentUser] = useState({
     email: "",
     password: ""
   });
 
-  // flags in the state to watch for add/remove updates
+  // Flags in the state to watch for add/remove updates
   const [add, setAdd] = useState(false);
 
   useEffect(() => {
@@ -34,12 +36,13 @@ const AuthLogin = () => {
           );
           navigate("/");
         }
-        // TODO: redirect user to main app
+        
         setAdd(false);
       });
     }
   }, [navigate, currentUser, add]);
 
+  // Function to handle changes in the values
   const onChangeHandler = (e) => {
     e.preventDefault();
     console.log(e.target);
@@ -52,6 +55,7 @@ const AuthLogin = () => {
     });
   };
 
+  // Function to handle form submission
   const onSubmitHandler = (e) => {
     e.preventDefault();
     console.log("submitted: ", e.target);

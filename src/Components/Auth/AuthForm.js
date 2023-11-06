@@ -1,5 +1,6 @@
 import React from "react";
 
+// Function which includes form for users to register for an account
 const AuthForm = ({ user, isLogin, onChange, onSubmit }) => {
   return (
     <form onSubmit={onSubmit} autoComplete="off">
@@ -15,7 +16,7 @@ const AuthForm = ({ user, isLogin, onChange, onSubmit }) => {
               value={user.firstName}
               onChange={onChange}
               name="firstName"
-              placeholder="first name"
+              placeholder="First Name"
               required
             />
           </div>
@@ -29,6 +30,7 @@ const AuthForm = ({ user, isLogin, onChange, onSubmit }) => {
               value={user.lastName}
               onChange={onChange}
               name="lastName"
+              placeholder="Last Name"
               required
             />
           </div>{" "}
@@ -47,6 +49,7 @@ const AuthForm = ({ user, isLogin, onChange, onSubmit }) => {
             value={user.email}
             onChange={onChange}
             name="email"
+            placeholder="Email"
             required
           />
         </div>{" "}
@@ -61,6 +64,7 @@ const AuthForm = ({ user, isLogin, onChange, onSubmit }) => {
             onChange={onChange}
             name="password"
             min="0"
+            placeholder="Password"
             required
           />
         </div>

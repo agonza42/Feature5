@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { checkUser } from "./AuthService";
+import { checkUser } from "../../Common/Services/AuthService";
 
+// Function to redirect users based on whether they're authenticated or not
 const AuthModule = () => {
   const navigate = useNavigate();
 
-  // redirect already authenticated users back to home
+  // Redirect already authenticated users back to home
   useEffect(() => {
     if (checkUser()) {
       alert("You are already logged in");
@@ -14,6 +15,7 @@ const AuthModule = () => {
     }
   }, [navigate]);
 
+  // Links to register or login for unauthenticated users
   return (
     <div>
       <Link to="/auth/register">

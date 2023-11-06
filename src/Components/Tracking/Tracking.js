@@ -65,7 +65,7 @@ class Tracking extends Component {
     
     const todaysDateObj = new Date(todaysDateValue);
 
-    // Simple validation
+    // Simple validation for all values
     if (!/^(\d{4}-\d{2}-\d{2})$/.test(todaysDateValue) || isNaN(breakfastCalsValue) || isNaN(lunchCalsValue) || isNaN(dinnerCalsValue) || isNaN(snacksCalsValue) || isNaN(exerciseCalsValue)) {
       alert('Please provide values for all fields.');
       return;

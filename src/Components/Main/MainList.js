@@ -1,7 +1,6 @@
 import React from "react";
 
 /* STATEFUL PARENT COMPONENT */
-// const MainList = ({users}) => {}     OLD FUNCTION DECLARATION
 const MainList = () => {
   // Variables in the state to hold data
 
