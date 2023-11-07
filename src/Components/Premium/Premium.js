@@ -1,119 +1,97 @@
-import React, { Component } from 'react';
-import { createPremiumSignUp } from '../../Common/Services/PremiumService.js';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { createPremiumSignUp } from '../../Common/Services/PremiumService';
 import PremiumChild from "./PremiumChild";
 
+
 /* Premium MODULE WITH STATEFUL PARENT AND STATELESS CHILD */
-class Premium extends Component {
-  constructor() {
-    super();
-    this.state = {
-      formData: {
-        name: '',
-        cardNumber: '',
-        expirationDate: '',
-        securityCode: '',
-      },
-    };
+function Premium() {
+  const [formData, setFormData] = useState({
+    name: '',
+    cardNumber: '',
+    expirationDate: '',
+    securityCode: '',
+  });
 
-    // Binding event handlers to maintain the correct 'this' context
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+  const navigate = useNavigate();
 
-  // Function to handle events that change the input
-  handleInputChange(event) {
-    // Logging into the console to make sure the form is getting the correct values
-    console.log('Event Target:', event.target);
-    console.log('Name:', event.target.name);
-    console.log('Value:', event.target.value);
+  const handleInputChange = (event) => {
 
+    // Initialize name and value
     const { name, value } = event.target;
-
-    let updatedValue;
+    let updatedValue = value;
 
     if (name === 'cardNumber' || name === 'securityCode') {
-        updatedValue = parseInt(value);
-    } else if (name === 'expirationDate') { // Assuming expirationDate is input type 'date' which will return date in string format "YYYY-MM-DD".
-        updatedValue = value;
-    } else {
-        updatedValue = value; // default for other fields (like 'name')
+      // Remove non-digit characters
+      updatedValue = value.replace(/\D/g, '');
     }
 
-    this.setState(prevState => ({
-        formData: {
-            ...prevState.formData,
-            [name]: updatedValue
-        }
-    }), () => {
-        console.log('Updated state:', this.state.formData);
-    });
-
-  }
+    setFormData(prevState => ({
+      ...prevState,
+      [name]: updatedValue
+    }));
+  };
 
   // Function to handle asynchronous data when a submit event occurs
-  async handleSubmit(event) {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("Submitting form data:", this.state.formData);
     
     // Parse the values
-    const nameValue = this.state.formData.name;
-    const cardNumberValue = parseInt(this.state.formData.cardNumber);
-    const expirationDateValue = this.state.formData.expirationDate;
-    const securityCodeValue = parseInt(this.state.formData.securityCode);
-
-    const expirationDateObj = new Date(expirationDateValue);
+    const { name, cardNumber, expirationDate, securityCode } = formData;
+    const cardNumberValue = parseInt(cardNumber);
+    const securityCodeValue = parseInt(securityCode);
 
     // Validate the values
-    if (!nameValue || typeof nameValue !== 'string' || !cardNumberValue || cardNumberValue <= 0 || !securityCodeValue || securityCodeValue <= 0 || !/^(\d{4}-\d{2}-\d{2})$/.test(expirationDateValue)) {
+    if (!name || !cardNumberValue || cardNumberValue <= 0 || !securityCodeValue || securityCodeValue <= 0 || !/^(\d{4}-\d{2}-\d{2})$/.test(expirationDate)) {
       alert('Please provide valid input values.');
       return;
     }
 
+    const expirationDateObj = new Date(expirationDate);
+
     // Now create the data object to be sent
     const signupData = {
-      name: nameValue,
+      name,
       cardNumber: cardNumberValue,
       expirationDate: expirationDateObj,
       securityCode: securityCodeValue
     };
 
     try {
-      // Create the signup using your service function
+
+      // Create the signup using service function
       const response = await createPremiumSignUp(signupData);
       console.log('Premium SignUp created successfully:', response);
-      alert('Premium SignUp created successfully!')
-
+      alert('Premium SignUp created successfully!');
+      // Use navigate with 0 to reload page and empty form
+      navigate(0);
     } catch (error) {
       console.error('Error creating the premium signup:', error);
-      alert('Error creating premium signup')
+      alert('Error creating premium signup');
     }
-  }
+  };
 
-  // Using render for the component's HTML including form and button for user interaction
-  render() {
-    return (
-      <div>
-        <br />
-        <hr />
-        <h3>Subscribe to FitSnap+ Premium</h3>
-        <p>
-          Please fill in this form to join the monthly subscription for our
-          premium service!
-        </p>
+  return (
+    <div>
+      <br />
+      <hr />
+      <h3>Subscribe to FitSnap+ Premium</h3>
+      <p>
+        Please fill in this form to join the monthly subscription for our
+        premium service!
+      </p>
 
-        <form id="form" method="post" onSubmit={this.handleSubmit}>
-          <PremiumChild
-            formData={this.state.formData}
-            onChange={this.handleInputChange}
-          />
-          <button type="submit">
-            Subscribe
-          </button>
-        </form>
-      </div>
-    );
-  }
+      <form id="form" onSubmit={handleSubmit}>
+        <PremiumChild
+          formData={formData}
+          onChange={handleInputChange}
+        />
+        <button type="submit">
+          Subscribe
+        </button>
+      </form>
+    </div>
+  );
 }
 
 export default Premium;
-  
