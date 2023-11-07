@@ -81,7 +81,7 @@ function Premium() {
         premium service!
       </p>
 
-      <form id="form" onSubmit={handleSubmit}>
+      <form id="form" method="post" onSubmit={handleSubmit}>
         <PremiumChild
           formData={formData}
           onChange={handleInputChange}
