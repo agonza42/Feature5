@@ -72,9 +72,11 @@ class Goals extends Component {
       // Create the goal using your service function
       const response = await createGoalForm(goalData);
       console.log('Goal created successfully:', response);
+      alert('Goal created successfully!');
 
     } catch (error) {
       console.error('Error creating the goal:', error);
+      alert('Error creating the goal.')
     }
   }
 

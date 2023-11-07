@@ -83,8 +83,10 @@ class Tracking extends Component {
     try {
       const response = await createTrackingEntry(trackingEntryData);
       console.log('Tracking entry created successfully:', response);
+      alert('Tracking entry created successfully!')
     } catch (error) {
       console.error('Error creating the tracking entry:', error);
+      alert('Error creating the tracking entry')
     }
   }
 

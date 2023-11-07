@@ -81,9 +81,11 @@ class Premium extends Component {
       // Create the signup using your service function
       const response = await createPremiumSignUp(signupData);
       console.log('Premium SignUp created successfully:', response);
+      alert('Premium SignUp created successfully!')
 
     } catch (error) {
       console.error('Error creating the premium signup:', error);
+      alert('Error creating premium signup')
     }
   }
 
