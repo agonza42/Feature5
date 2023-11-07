@@ -12,12 +12,7 @@ const ProtectedRoute = (props) => {
   if (checkUser()) {
     return React.cloneElement(props.element);
   } else {
-    return (
-      <div>
-        <p>Unauthorized!</p>
-        <button onClick={goBackHandler}>Go Back.</button>
-      </div>
-    );
+    return null;
   }
 };
 

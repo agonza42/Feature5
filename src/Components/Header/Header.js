@@ -31,6 +31,12 @@ const Header = (props) => {
     return (
       <div>
         <h1 id="title">FitSnap</h1>
+        {/* List of references to navigate between website pages */}
+        <ul id="list">
+          <li><Link to="/">Home Page</Link></li>
+          <li><Link to="/auth/login">Log In</Link></li>
+          <li><Link to="/auth/register">Register</Link></li>
+        </ul>
       </div>
     );
   }
