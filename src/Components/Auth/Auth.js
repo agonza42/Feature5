@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 import { checkUser } from "../../Common/Services/AuthService";
 
 // Function to redirect users based on whether they're authenticated or not
@@ -16,18 +16,7 @@ const AuthModule = () => {
   }, [navigate]);
 
   // Links to register or login for unauthenticated users
-  return (
-    <div>
-      <Link to="/auth/register">
-        <button>Register</button>
-      </Link>
-      <br />
-      <br />
-      <Link to="/auth/login">
-        <button>Login</button>
-      </Link>
-    </div>
-  );
+  return <Navigate to="/auth/login" replace />;
 };
 
 export default AuthModule;

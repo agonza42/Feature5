@@ -28,10 +28,7 @@ export default function Components() {
           <Route path="/auth/login" element={<AuthLogin />} />
 
           <Route path="/logout" element={<Logout />} />
-          <Route
-            path="/"
-            element={<ProtectedRoute element={<HomePage />} />}
-          />
+          <Route path="/" element={<HomePage />} />
           <Route
             path="/overview"
             element={<ProtectedRoute element={<OverviewPage />} />}
