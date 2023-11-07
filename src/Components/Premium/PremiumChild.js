@@ -1,5 +1,6 @@
 import React from 'react';
 
+// Child function for premium signup component
 function PremiumChild({ formData, onChange }) {
   return (
     <div>

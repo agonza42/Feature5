@@ -4,6 +4,7 @@ import Parse from "parse";
 export const createUser = (newUser) => {
   const user = new Parse.User();
 
+  // Set all the necessary user information fields
   user.set("username", newUser.email);
   user.set("firstName", newUser.firstName);
   user.set("lastName", newUser.lastName);
@@ -28,6 +29,7 @@ export const loginUser = (currUser) => {
   user.set("password", currUser.password);
   user.set("username", currUser.email);
 
+  // Log in the user
   console.log("User: ", user);
   console.log();
   return user

@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { createPremiumSignUp } from '../../Common/Services/PremiumService';
 import PremiumChild from "./PremiumChild";
 
-
 /* Premium MODULE WITH STATEFUL PARENT AND STATELESS CHILD */
 function Premium() {
   const [formData, setFormData] = useState({
@@ -13,8 +12,10 @@ function Premium() {
     securityCode: '',
   });
 
+  // Initialize navigate for routing
   const navigate = useNavigate();
 
+  // Function to handle inputs in the form
   const handleInputChange = (event) => {
 
     // Initialize name and value

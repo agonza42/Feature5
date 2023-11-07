@@ -1,5 +1,6 @@
 import React from 'react';
 
+// Child function for the Goals component
 function GoalChild({ formData, onChange }) {
   return (
     <div>

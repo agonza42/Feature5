@@ -3,6 +3,7 @@ import React from 'react';
 // Import the CSS file
 import '../../Style/Tracking.css'; 
 
+// Child function for tracking component
 function TrackingChild({ formData, onChange }) {
   return (
     <div>

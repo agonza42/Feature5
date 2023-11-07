@@ -20,6 +20,7 @@ function Tracking() {
   // Initialize navigate for routing
   const navigate = useNavigate();
 
+  // Function to handle inputs in the form
   const handleInputChange = (event) => {
 
     // Initialize name and value
@@ -37,6 +38,7 @@ function Tracking() {
     }));
   };
 
+  // Function to handle asynchronous data when a submit event occurs
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -52,7 +54,7 @@ function Tracking() {
 
     const todaysDateObj = new Date(todaysDate);
 
-    // Simple validation for all values
+    // Validation for all values
     if (!/^(\d{4}-\d{2}-\d{2})$/.test(todaysDate) || [breakfastCals, lunchCals, dinnerCals, snacksCals, exerciseCals].some(val => isNaN(val))) {
       alert('Please provide values for all fields.');
       return;
