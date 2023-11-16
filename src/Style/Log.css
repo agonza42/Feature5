@@ -1,9 +1,12 @@
-/* Style/Log.css */
+/* Importing Google Fonts to be used for CSS styling */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap');
 
 body, html {
   height: 100%;
   margin: 0;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Titillium Web', sans-serif;
   background: #f4f7f6;
   color: #444;
   -webkit-font-smoothing: antialiased;
@@ -11,6 +14,7 @@ body, html {
 
 /* Title Styling */
 .auth-form h2 {
+  font-family: 'Titillium Web', sans-serif;
   font-size: 24px;
   text-align: center;
   margin-bottom: 1.5rem;
@@ -23,6 +27,7 @@ body, html {
   background-color: hsl(218, 41%, 25%); /* Lighter than 15% */
   background-image: radial-gradient(650px circle at 0% 0%, hsl(218, 41%, 45%) 15%, hsl(218, 41%, 40%) 35%, hsl(218, 41%, 30%) 75%, hsl(218, 41%, 29%) 80%, transparent 100%),
                     radial-gradient(1250px circle at 100% 100%, hsl(218, 41%, 55%) 15%, hsl(218, 41%, 40%) 35%, hsl(218, 41%, 30%) 75%, hsl(218, 41%, 29%) 80%, transparent 100%);
+  font-family: 'Titillium Web', sans-serif;
 }
 
 #radius-shape-1 {
@@ -70,6 +75,6 @@ body, html {
 }
 
 .bg-glass {
-  background-color: hsla(0, 0%, 90%, 0.95) !important; /* Greyer and more opaque */
+  background-color: hsla(0, 0%, 90%, 0.95) !important;
   backdrop-filter: saturate(200%) blur(25px);
 }

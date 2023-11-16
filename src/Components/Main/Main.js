@@ -9,6 +9,7 @@ const Main = () => {
 
   return (
     <div>
+      <br></br>
       <h4 id="subtitle">
         Welcome to the one-stop location to track and embark on your
         personalized fitness journey!

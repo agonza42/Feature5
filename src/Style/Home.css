@@ -7,20 +7,27 @@
 /* Also using grid-auto-rows: min-content to take up little amount of space without overflowing */
 @media screen {
 
+    body, html {
+        margin: 0;
+        padding: 0;
+    }
+
     #title {
-        color:blue;
+        color: rgb(84, 15, 149) !important;
         font-family: 'Bungee', cursive;
         font-size: 100px;
         text-align: center;
-        background-color:rgb(99, 173, 242);
-        padding-top: 20px;
-        padding-bottom: 20px;
+        background-image: radial-gradient(650px circle at 0% 0%, hsl(218, 41%, 65%) 15%, hsl(218, 41%, 60%) 35%, hsl(218, 41%, 50%) 75%, hsl(218, 41%, 49%) 80%, transparent 100%),
+                          radial-gradient(1250px circle at 100% 100%, hsl(218, 41%, 75%) 15%, hsl(218, 41%, 60%) 35%, hsl(218, 41%, 50%) 75%, hsl(218, 41%, 49%) 80%, transparent 100%);
+        margin: 0;
+        padding: 0;
         grid-auto-rows: min-content;
-    }
+    } 
 
     /* Setting up a Flexbox grid to have a clean display for our links to other pages */
     #list {
-        background-color: lavender;
+        background-image: radial-gradient(650px circle at 0% 0%, hsl(0, 0%, 85%) 15%, hsl(0, 0%, 80%) 35%, hsl(0, 0%, 75%) 75%, hsl(0, 0%, 74%) 80%, transparent 100%),
+                          radial-gradient(1250px circle at 100% 100%, hsl(0, 0%, 90%) 15%, hsl(0, 0%, 80%) 35%, hsl(0, 0%, 75%) 75%, hsl(0, 0%, 74%) 80%, transparent 100%);
         font-family: 'Titillium Web', sans-serif;
         text-align: center;
         display: flex;
@@ -28,8 +35,8 @@
         justify-content: space-around;
         row-gap: 20px;
         column-gap: 100px;
-        padding-top: 20px;
-        padding-bottom: 20px;
+        margin: 0;
+        padding: 0; 
         grid-auto-rows: min-content;
         list-style: none;
     }
