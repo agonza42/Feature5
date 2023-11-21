@@ -68,22 +68,30 @@ function Goals() {
   };
 
   return (
-    <div>
-      <hr />
-      <h3>Personalized Fitness Goal-Setting</h3>
-      <p>
-        Please enter your information and goals for us to provide personalized
-        milestones and goals!
-      </p>
-
-      <form id="form" method="post" onSubmit={handleSubmit}>
-        <GoalsChild
-          formData={formData}
-          onChange={handleInputChange}
-        />
-        <button type="submit">Submit</button>
-      </form>
-    </div>
+    <section className="background-radial-gradient overflow-hidden">
+      <div className="container py-5">
+        <div className="row justify-content-center">
+          <div className="col-md-8 col-lg-6">
+            <div className="card bg-glass">
+              <div className="card-body p-5">
+                <h3 className="text-center">Personalized Fitness Goal-Setting</h3>
+                <p className="text-center">
+                  Please enter your information and goals for us to provide personalized
+                  milestones and goals!
+                </p>
+                <form onSubmit={handleSubmit} className="text-center">
+                  <GoalsChild
+                    formData={formData}
+                    onChange={handleInputChange}
+                  />
+                  <button type="submit" className="btn btn-primary mt-4">Submit</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 

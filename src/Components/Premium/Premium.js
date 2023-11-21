@@ -3,6 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { createPremiumSignUp } from '../../Common/Services/PremiumService';
 import PremiumChild from "./PremiumChild";
 
+// Import the CSS file
+import '../../Style/Premium.css';
+
 /* Premium MODULE WITH STATEFUL PARENT AND STATELESS CHILD */
 function Premium() {
   const [formData, setFormData] = useState({
@@ -73,25 +76,29 @@ function Premium() {
   };
 
   return (
-    <div>
-      <br />
-      <hr />
-      <h3>Subscribe to FitSnap+ Premium</h3>
-      <p>
-        Please fill in this form to join the monthly subscription for our
-        premium service!
-      </p>
-
-      <form id="form" method="post" onSubmit={handleSubmit}>
-        <PremiumChild
-          formData={formData}
-          onChange={handleInputChange}
-        />
-        <button type="submit">
-          Subscribe
-        </button>
-      </form>
-    </div>
+    <section className="background-radial-gradient overflow-hidden">
+      <div className="container py-5">
+        <div className="row justify-content-center">
+          <div className="col-md-8 col-lg-6">
+            <div className="card bg-glass">
+              <div className="card-body p-5">
+                <h3 className="text-center">Subscribe to FitSnap+ Premium</h3>
+                <p className="text-center">
+                  Please fill in this form to join the monthly subscription for our premium service!
+                </p>
+                <form onSubmit={handleSubmit} className="text-center">
+                  <PremiumChild
+                    formData={formData}
+                    onChange={handleInputChange}
+                  />
+                  <button type="submit" className="btn btn-primary mt-4">Subscribe</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 
