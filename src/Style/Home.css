@@ -43,6 +43,8 @@
 
     #subtitle {
         color:blueviolet;
+        background-image: radial-gradient(650px circle at 0% 0%, hsl(0, 0%, 85%) 15%, hsl(0, 0%, 80%) 35%, hsl(0, 0%, 75%) 75%, hsl(0, 0%, 74%) 80%, transparent 100%),
+                          radial-gradient(1250px circle at 100% 100%, hsl(0, 0%, 90%) 15%, hsl(0, 0%, 80%) 35%, hsl(0, 0%, 75%) 75%, hsl(0, 0%, 74%) 80%, transparent 100%);
         font-family: 'Bebas Neue', sans-serif;
         font-size: 30px;
         text-align: center;
