@@ -1,5 +1,8 @@
 import React from "react";
 
+// Import CSS stylesheet
+import '../../Style/Log.css'; 
+
 // Function which includes form for users to register for an account
 const AuthForm = ({ user, isLogin, onChange, onSubmit }) => {
   return (
@@ -7,8 +10,6 @@ const AuthForm = ({ user, isLogin, onChange, onSubmit }) => {
       {!isLogin ? (
         <div>
           <div className="form-group">
-            <label>First Name</label>
-            <br />
             <input
               type="text"
               className="form-control"
@@ -21,8 +22,6 @@ const AuthForm = ({ user, isLogin, onChange, onSubmit }) => {
             />
           </div>
           <div className="form-group">
-            <label>Last Name</label>
-            <br />
             <input
               type="text"
               className="form-control"
@@ -40,8 +39,6 @@ const AuthForm = ({ user, isLogin, onChange, onSubmit }) => {
       )}
       <div>
         <div className="form-group">
-          <label>Email</label>
-          <br />
           <input
             type="email"
             className="form-control"
@@ -54,8 +51,6 @@ const AuthForm = ({ user, isLogin, onChange, onSubmit }) => {
           />
         </div>{" "}
         <div className="form-group">
-          <label>Password</label>
-          <br />
           <input
             type="password"
             className="form-control"

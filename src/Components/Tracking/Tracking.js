@@ -83,25 +83,31 @@ function Tracking() {
   };
 
   return (
-    <div>
-      <br />
-      <hr />
-      <h3>Daily Fitness Tracker</h3>
-      <p>
-        Please enter the calorie intake from your meals throughout the day, as
-        well as the calories that you burned.
-      </p>
-
-      <form id="form" method="post" onSubmit={handleSubmit}>
-        <TrackingChild
-          formData={formData}
-          onChange={handleInputChange}
-        />
-        <button type="submit">
-          Submit
-        </button>
-      </form>
-    </div>
+    <section className="background-radial-gradient overflow-hidden">
+      <div className="container py-5">
+        <div className="row justify-content-center">
+          <div className="col-md-8 col-lg-6">
+            <div className="card bg-glass">
+              <div className="card-body p-5">
+                <h3 className="text-center">Daily Fitness Tracker</h3>
+                <p className="text-center">
+                  Please enter the calorie intake from your meals throughout the day, as well as the calories that you burned.
+                </p>
+                <form onSubmit={handleSubmit} className="text-center">
+                  <TrackingChild
+                    formData={formData}
+                    onChange={handleInputChange}
+                  />
+                  <div className="text-center mt-4">
+                    <button type="submit" className="btn btn-primary">Submit</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 

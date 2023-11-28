@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import { useNavigate, Navigate } from "react-router-dom";
 import { checkUser } from "../../Common/Services/AuthService";
 
+// Import CSS stylesheet
+import '../../Style/Log.css'; 
+
 // Function to redirect users based on whether they're authenticated or not
 const AuthModule = () => {
   const navigate = useNavigate();

@@ -9,6 +9,7 @@ import {
   Routes,
   Route
 } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 Parse.initialize(Env.APPLICATION_ID, Env.JAVASCRIPT_KEY);
 Parse.serverURL = Env.SERVER_URL;

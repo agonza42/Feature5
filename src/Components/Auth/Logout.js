@@ -2,6 +2,9 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { logoutUser } from '../../Common/Services/AuthService';
 
+// Import CSS stylesheet
+import '../../Style/Log.css'; 
+
 // Function for user log-out functionality
 const Logout = () => {
   const navigate = useNavigate();
