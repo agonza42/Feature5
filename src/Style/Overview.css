@@ -1,0 +1,117 @@
+/* Importing Google Fonts to be used for CSS styling */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap');
+
+/* Includes media query to keep design and styling consistent, regardless of device and screen size */
+/* Also using grid-auto-rows: min-content to take up little amount of space without overflowing */
+@media screen {
+
+    /* Reset margin and padding for all elements */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    /* Setting up a Flexbox grid to have a clean display for our links to other pages */
+    #list {
+        background-image: radial-gradient(650px circle at 0% 0%, hsl(0, 0%, 85%) 15%, hsl(0, 0%, 80%) 35%, hsl(0, 0%, 75%) 75%, hsl(0, 0%, 74%) 80%, transparent 100%),
+                          radial-gradient(1250px circle at 100% 100%, hsl(0, 0%, 90%) 15%, hsl(0, 0%, 80%) 35%, hsl(0, 0%, 75%) 75%, hsl(0, 0%, 74%) 80%, transparent 100%);
+        font-family: 'Titillium Web', sans-serif;
+        text-align: center;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-around;
+        row-gap: 20px;
+        column-gap: 100px;
+        margin: 0;
+        padding: 0; 
+        grid-auto-rows: min-content;
+        list-style: none;
+        height: 80px;
+    }
+
+    #subtitle {
+        margin-top: 0;
+        padding-top: 0;
+        color:blueviolet;
+        background-image: radial-gradient(650px circle at 0% 0%, hsl(0, 0%, 85%) 15%, hsl(0, 0%, 80%) 35%, hsl(0, 0%, 75%) 75%, hsl(0, 0%, 74%) 80%, transparent 100%),
+                          radial-gradient(1250px circle at 100% 100%, hsl(0, 0%, 90%) 15%, hsl(0, 0%, 80%) 35%, hsl(0, 0%, 75%) 75%, hsl(0, 0%, 74%) 80%, transparent 100%);
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 30px;
+        text-align: center;
+        grid-auto-rows: min-content;
+      }
+
+    .background-radial-gradient {
+        background-color: hsl(218, 41%, 25%);
+        background-image: radial-gradient(650px circle at 0% 0%, hsl(218, 41%, 45%) 15%, hsl(218, 41%, 40%) 35%, hsl(218, 41%, 30%) 75%, hsl(218, 41%, 29%) 80%, transparent 100%),
+                          radial-gradient(1250px circle at 100% 100%, hsl(218, 41%, 55%) 15%, hsl(218, 41%, 40%) 35%, hsl(218, 41%, 30%) 75%, hsl(218, 41%, 29%) 80%, transparent 100%);
+        padding: 0;
+        margin-top: -1rem;
+    }
+      
+    /* Additional styles for list and cards */
+    .list-group-item {
+        padding: 1rem; /* Increase padding inside list items */
+        border-radius: 0.75rem; /* Rounds the corners */
+        border: 1px solid #ddd; /* Add border to each list item */
+        margin-bottom: 0.5rem; /* Add space between list items */
+        margin: 0.25rem 0;
+        width: 100%;
+        background: radial-gradient(circle at center, #efeeee 0%, #e0d5d5 100%);
+    }
+    
+    /* Card styles */
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        border-radius: 0.75rem; /* 12px rounded corners for cards */
+        margin-bottom: 1rem;
+        margin: 0.5rem;
+        text-align: center;
+    }
+    
+    .card:hover {
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+    
+    .card img.card-img-top {
+        border-top-left-radius: 0.75rem; /* 12px rounded corners for image at top of card */
+        border-top-right-radius: 0.75rem;
+    }
+    
+    .card-body {
+        padding: 15px; /* Adjust padding for card body */
+    }
+
+    /* General container styling for all sections */
+    .section-container {
+        width: 80%; /* Sets the width to 80% of the parent width */
+        margin: 1rem auto; /* Centers the container and adds margin on the top and bottom */
+        padding: 2rem; /* Adds padding inside the container */
+        border-radius: 0.75rem; /* Rounds the corners */
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Adds shadow for depth */
+    }
+
+    /* Styles for the list section */
+    .list-section {
+        background: radial-gradient(#e0e0e0, #ccadf5);
+        text-align: center;
+    }
+    
+    /* Styles for the progress bars section */
+    .progress-section {
+        background: radial-gradient(#e0e0e0, #ccadf5);
+    }
+    
+    /* Styles for the cards section */
+    .cards-section {
+        background: radial-gradient(#e0e0e0, #ccadf5);
+    }
+
+    .cards-section .card-body {
+        background: radial-gradient(circle at center, #efeeee 0%, #e0d5d5 100%);
+    }
+}
