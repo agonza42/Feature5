@@ -29,14 +29,12 @@ const AuthLogin = () => {
   // useEffect that run when changes are made to the state variable flags
   useEffect(() => {
     if (currentUser && add) {
-      loginUser(currentUser).then((userLoggedIn) => {
+      loginUser(currentUser).then(({ user: userLoggedIn, sessionToken }) => {
         if (userLoggedIn) {
-          alert(
-            `${userLoggedIn.get("firstName")}, you successfully logged in!`
-          );
+          alert(`${userLoggedIn.get("firstName")}, you successfully logged in!`);
+          localStorage.setItem('sessionToken', sessionToken); // Save the session token
           navigate("/");
         }
-        
         setAdd(false);
       });
     }

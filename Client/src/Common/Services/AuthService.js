@@ -26,8 +26,8 @@ export const createUser = (newUser) => {
 export const loginUser = (currUser) => {
   const user = new Parse.User();
 
-  user.set("password", currUser.password);
   user.set("username", currUser.email);
+  user.set("password", currUser.password);
 
   // Log in the user
   console.log("User: ", user);
@@ -35,10 +35,19 @@ export const loginUser = (currUser) => {
   return user
     .logIn(user.email, user.password)
     .then((currUserSaved) => {
-      return currUserSaved;
+
+      // Extract the session token
+      const sessionToken = currUserSaved.getSessionToken();
+
+      // Returning both the user and the session token
+      return {
+        user: currUserSaved,
+        sessionToken: sessionToken
+      };
     })
     .catch((error) => {
-      alert(`Error: ${error.message}`);
+      console.error(`Error: ${error.message}`);
+      throw error;
     });
 };
 

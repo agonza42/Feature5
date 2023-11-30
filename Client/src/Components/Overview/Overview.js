@@ -1,10 +1,81 @@
-// import OverviewChild from "./OverviewChild";
+import React, { useState, useEffect } from 'react';
 
 // Import the CSS file
 import '../../Style/Overview.css';
 
 /* OVERVIEW MODULE WITH STATEFUL PARENT AND STATELESS CHILD */
 const Overview = () => {
+
+  // State to hold the personalized recommendations
+  const [recommendations, setRecommendations] = useState([]);
+  const [error, setError] = useState(null);
+
+  const fetchRecommendations = async () => {
+
+    const sessionToken = localStorage.getItem('sessionToken');
+    console.log("Session Token in React:", sessionToken);
+
+    // Check if session token is available
+    if (!sessionToken) {
+      console.error('Session token is not available');
+      setError('Please log in to view recommendations.');
+      return;
+    }
+
+    try {
+      const response = await fetch('http://localhost:4000/personalized-recommendations', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-parse-session-token': sessionToken,
+        },
+      });
+  
+      if (!response.ok) {
+        throw new Error(`Network response was not ok: ${response.statusText}`);
+      }
+  
+      const contentType = response.headers.get('content-type');
+      if (!contentType || !contentType.includes('application/json')) {
+        throw new Error('Received non-JSON response from server');
+      }
+  
+      const data = await response.json();
+      setRecommendations(data);
+    } catch (err) {
+      console.error('Fetch error:', err);
+      setError(err.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchRecommendations();
+  }, []);
+
+  // Render the recommendations or a fallback message
+  const renderRecommendations = () => {
+    if (error) {
+      return <p>Error loading recommendations: {error}</p>;
+    }
+
+    if (!recommendations || recommendations.length === 0) {
+      return <p>Loading recommendations...</p>;
+    }
+
+    if (recommendations.message) {
+      return <p>{recommendations.message}</p>;
+    }
+
+    // *** This is a placeholder, adjust based on actual data structure!!! ***
+    /*return (
+      <ul>
+        {recommendations.map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
+      </ul>
+    );*/
+  };
+
   return (
     <div className="background-radial-gradient">
       <h2 id="subtitle">Recent Summary</h2>
@@ -54,7 +125,7 @@ const Overview = () => {
       <div className="section-container cards-section">
         <h3 className="text-center">Recommended Plans/Milestones</h3>
         <br></br>
-        <div className="container">
+        {/*<div className="container">
           <div className="row">
             <div className="col-lg-4 mb-2">
               <div className="card bg-light mb-3" style={{width: "18rem"}}>
@@ -87,7 +158,8 @@ const Overview = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
+        {renderRecommendations()}
       </div>
 
       <br></br>

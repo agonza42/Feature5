@@ -19,6 +19,7 @@ body, html {
     align-items: center;
     justify-content: center;
     min-height: 100vh; /* Use viewport height to center form vertically */
+    text-align: center;
 }
 
 /* Title Styling */
@@ -94,6 +95,7 @@ body, html {
     max-width: 500px; /* Maximum width of the form */
     margin: auto; /* Centers the card horizontally */
     overflow: hidden; /* Optional: hides any overflow */
+    text-align: center;
 }
 
 .card-body {
