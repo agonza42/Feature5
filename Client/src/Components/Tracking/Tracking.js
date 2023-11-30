@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createTrackingEntry } from '../../Common/Services/TrackingService';
 import TrackingChild from "./TrackingChild";
+import Parse from "parse";
 
 // Import the CSS file
 import '../../Style/Tracking.css'; 
@@ -42,6 +43,14 @@ function Tracking() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    // Current user info
+    const currentUser = Parse.User.current();
+    
+    if (!currentUser) {
+      alert('No user is authenticated.');
+      return;
+    }
+
     // Destructure values for convenience
     const {
       todaysDate,
@@ -67,7 +76,8 @@ function Tracking() {
       lunchCals,
       dinnerCals,
       snacksCals,
-      exerciseCals
+      exerciseCals,
+      user: currentUser
     };
 
     try {

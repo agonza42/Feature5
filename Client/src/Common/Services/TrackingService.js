@@ -4,7 +4,7 @@ import Parse from "parse";
 export const createTrackingEntry = (formData) => {
 
   // Destructure the values
-  const { todaysDate, breakfastCals, lunchCals, dinnerCals, snacksCals, exerciseCals } = formData;
+  const { todaysDate, breakfastCals, lunchCals, dinnerCals, snacksCals, exerciseCals, user} = formData;
   
   console.log("Creating Goal:", TrackingEntry);
   const TrackingEntry = Parse.Object.extend("TrackingEntry");
@@ -17,6 +17,7 @@ export const createTrackingEntry = (formData) => {
   trackingentry.set("dinnerCals", parseFloat(dinnerCals));
   trackingentry.set("snacksCals", parseFloat(snacksCals));
   trackingentry.set("exerciseCals", parseFloat(exerciseCals));
+  trackingentry.set("user", user);
 
   console.log("Saving form data to Parse:", formData);
 
