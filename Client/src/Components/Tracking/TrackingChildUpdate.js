@@ -14,7 +14,7 @@ function TrackingChildUpdate({ entry, onSave, onCancel }) {
     lunchCals: '',
     dinnerCals: '',
     snacksCals: '',
-    exerciseCals: ''
+    exerciseCals: '',
   });
 
   // Pre-fill form when editing

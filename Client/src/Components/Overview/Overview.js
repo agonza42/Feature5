@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getAllTrackingEntries, getById } from '../../Common/Services/TrackingService';
+import { getAllTrackingEntries, getById, updateTrackingForm, deleteById} from '../../Common/Services/TrackingService';
 import Parse from "parse";
 
 // Import the child component
@@ -84,26 +84,54 @@ const Overview = () => {
       row.insertCell(5).textContent = entry.get('exerciseCals');
 
       // Add a cell for the edit button
-      const editCell = row.insertCell(-1); // Add a cell for the edit button
+      const editCell = row.insertCell(-1); 
       const editButton = document.createElement('button');
       editButton.textContent = 'Edit';
       editButton.onclick = () => handleEdit(entry, index);
       editCell.appendChild(editButton);
+
+      // Add a cell for the delete button
+      const deleteCell = row.insertCell(-1);
+      const deleteButton = document.createElement('button');
+      deleteButton.textContent = 'Delete';
+      deleteButton.onclick = () => handleDelete(entry, index);
+      deleteCell.appendChild(deleteButton);
     });
   }
 
-  // handle editing activity of user
-const handleEdit = async(entry) => {
-  try {
-    const entryData = await getById(entry.id);
-    console.log("Fetched Entry Data:", entryData);
+  // handle delete entry
+  const handleDelete = async (entry) => {
+    try {
+      // Confirm before deletion
+      if (!confirm('Are you sure you want to delete this entry?')) {
+        return; // If user cancels, exit the function
+      }
 
-    setCurrentEntry(entryData); // Set the current entry to be edited
-    setIsEditing(true); // Open the TrackingChild as a modal
-  } catch (error) {
-    console.error('Error fetching entry data:', error);
-  }
-};
+      // Perform the deletion operation
+      await deleteById(entry.id);
+      console.log("Entry deleted:", entry.id);
+      
+      // Refresh the data
+      const updatedEntries = await getAllTrackingEntries(); // Assuming this fetches all entries
+      processTrackingEntries(updatedEntries); // Re-render the table with updated data
+      
+    } catch (error) {
+      console.error('Error deleting entry:', error);
+    }
+  };
+
+  // handle editing activity of user
+  const handleEdit = async(entry) => {
+    try {
+      const entryData = await getById(entry.id);
+      console.log("Fetched Entry Data:", entryData);
+
+      setCurrentEntry(entryData); // Set the current entry to be edited
+      setIsEditing(true); // Open the TrackingChild as a modal
+    } catch (error) {
+      console.error('Error fetching entry data:', error);
+    }
+  };
 
   // handle submit of edits made to activity of user
   const handleSubmitEdit = async (updatedData) => {
@@ -114,17 +142,10 @@ const handleEdit = async(entry) => {
       const entryToUpdate = await query.get(currentEntry.id); // Fetch the entry to update
       console.log(updatedData.todaysDate)
       // Update fields
-      var dateObject = new Date(updatedData.todaysDate);
-
-      entryToUpdate.set("todaysDate", dateObject);
-      entryToUpdate.set("breakfastCals", parseFloat(updatedData.breakfastCals));
-      entryToUpdate.set("lunchCals", parseFloat(updatedData.lunchCals));
-      entryToUpdate.set("dinnerCals", parseFloat(updatedData.dinnerCals));
-      entryToUpdate.set("snacksCals", parseFloat(updatedData.snacksCals));
-      entryToUpdate.set("exerciseCals", parseFloat(updatedData.exerciseCals));
-
-      await entryToUpdate.save();
+      await updateTrackingForm(entryToUpdate, updatedData)
+      
       setIsEditing(false); // Close the modal after saving
+
       // Refresh the data
       const updatedEntries = await getAllTrackingEntries(); // Assuming this fetches all entries
       processTrackingEntries(updatedEntries); // Re-render the table with updated data

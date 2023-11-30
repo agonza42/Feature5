@@ -55,9 +55,22 @@ export const getAllTrackingEntries = (user) => {
     return Promise.reject(error);
   });
 };
+
+export const updateTrackingForm = (existingData, newData) => {
+  var dateObject = new Date(newData.todaysDate);
+  
+  existingData.set("todaysDate", dateObject);
+  existingData.set("breakfastCals", parseFloat(newData.breakfastCals));
+  existingData.set("lunchCals", parseFloat(newData.lunchCals));
+  existingData.set("dinnerCals", parseFloat(newData.dinnerCals));
+  existingData.set("snacksCals", parseFloat(newData.snacksCals));
+  existingData.set("exerciseCals", parseFloat(newData.exerciseCals));
+
+  return existingData.save();
+};
   
 // DELETE operation - remove TrackingEntry by ID
-export const removeTrackingEntry = (id) => {
+export const deleteById = (id) => {
   const TrackingEntry = Parse.Object.extend("TrackingEntry");
   const query = new Parse.Query(TrackingEntry);
   return query.get(id).then((trackingentry) => {
