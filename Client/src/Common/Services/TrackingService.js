@@ -41,19 +41,36 @@ export const getById = (id) => {
   export let TrackingEntries = {};
   TrackingEntries.collection = [];
   
-// GET operation - get all goals in Parse class TrackingEntry
-export const getAllTrackingEntries = () => {
+// GET operation - get all tracking enteries in Parse class TrackingEntry
+export const getAllTrackingEntries = (user) => {
   const TrackingEntry = Parse.Object.extend("TrackingEntry");
   const query = new Parse.Query(TrackingEntry);
+  query.equalTo("user", user); // filter to current user 
   return query.find().then((results) => {
-      // returns array of TrackingEntry objects
-      console.log(results)
-      return results;
+    // This logs and returns an array of TrackingEntry objects associated with the user
+    console.log(results);
+    return results;
+  }).catch((error) => {
+    console.error('Error while fetching tracking entries for user:', error);
+    return Promise.reject(error);
   });
+};
+
+export const updateTrackingForm = (existingData, newData) => {
+  var dateObject = new Date(newData.todaysDate);
+  
+  existingData.set("todaysDate", dateObject);
+  existingData.set("breakfastCals", parseFloat(newData.breakfastCals));
+  existingData.set("lunchCals", parseFloat(newData.lunchCals));
+  existingData.set("dinnerCals", parseFloat(newData.dinnerCals));
+  existingData.set("snacksCals", parseFloat(newData.snacksCals));
+  existingData.set("exerciseCals", parseFloat(newData.exerciseCals));
+
+  return existingData.save();
 };
   
 // DELETE operation - remove TrackingEntry by ID
-export const removeTrackingEntry = (id) => {
+export const deleteById = (id) => {
   const TrackingEntry = Parse.Object.extend("TrackingEntry");
   const query = new Parse.Query(TrackingEntry);
   return query.get(id).then((trackingentry) => {

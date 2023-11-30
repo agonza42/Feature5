@@ -1,4 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { getAllTrackingEntries, getById, updateTrackingForm, deleteById} from '../../Common/Services/TrackingService';
+import Parse from "parse";
+
+// Import the child component
+import OverviewChild from './OverviewChild';
+import TrackingChildUpdate from './../Tracking/TrackingChildUpdate';
 
 // Import the CSS file
 import '../../Style/Overview.css';
@@ -9,6 +15,13 @@ const Overview = () => {
   // State to hold the personalized recommendations
   const [recommendations, setRecommendations] = useState([]);
   const [error, setError] = useState(null);
+
+  // State to track if we want to display activities
+  const [isSubmitted, setIsSubmitted] = useState(false);  
+
+  // state to track edditing activity info
+  const [currentEntry, setCurrentEntry] = useState(null);
+  const [isEditing, setIsEditing] = useState(false);
 
   const fetchRecommendations = async () => {
 
@@ -52,6 +65,119 @@ const Overview = () => {
     fetchRecommendations();
   }, []);
 
+  const handleHide = () => {
+    setIsSubmitted(false); // Hide the OverviewChild component
+  };
+
+  // ProcessTrackingEntries - takes an array of objects as an argument and populates a table with data.
+  function processTrackingEntries(trackingEntries) {
+    const tableBody = document.getElementById('entriesTable').getElementsByTagName('tbody')[0];
+    tableBody.innerHTML = ''; // Clear existing rows
+  
+    trackingEntries.forEach((entry, index) => {
+      const row = tableBody.insertRow();
+      row.insertCell(0).textContent = entry.get('todaysDate') ? entry.get('todaysDate').toLocaleDateString() : '';
+      row.insertCell(1).textContent = entry.get('breakfastCals');
+      row.insertCell(2).textContent = entry.get('lunchCals');
+      row.insertCell(3).textContent = entry.get('dinnerCals');
+      row.insertCell(4).textContent = entry.get('snacksCals');
+      row.insertCell(5).textContent = entry.get('exerciseCals');
+
+      // Add a cell for the edit button
+      const editCell = row.insertCell(-1); 
+      const editButton = document.createElement('button');
+      editButton.textContent = 'Edit';
+      editButton.onclick = () => handleEdit(entry, index);
+      editCell.appendChild(editButton);
+
+      // Add a cell for the delete button
+      const deleteCell = row.insertCell(-1);
+      const deleteButton = document.createElement('button');
+      deleteButton.textContent = 'Delete';
+      deleteButton.onclick = () => handleDelete(entry, index);
+      deleteCell.appendChild(deleteButton);
+    });
+  }
+
+  // handle delete entry
+  const handleDelete = async (entry) => {
+    try {
+      // Confirm before deletion
+      if (!confirm('Are you sure you want to delete this entry?')) {
+        return; // If user cancels, exit the function
+      }
+
+      // Perform the deletion operation
+      await deleteById(entry.id);
+      console.log("Entry deleted:", entry.id);
+      
+      // Refresh the data
+      const updatedEntries = await getAllTrackingEntries(); // Assuming this fetches all entries
+      processTrackingEntries(updatedEntries); // Re-render the table with updated data
+      
+    } catch (error) {
+      console.error('Error deleting entry:', error);
+    }
+  };
+
+  // handle editing activity of user
+  const handleEdit = async(entry) => {
+    try {
+      const entryData = await getById(entry.id);
+      console.log("Fetched Entry Data:", entryData);
+
+      setCurrentEntry(entryData); // Set the current entry to be edited
+      setIsEditing(true); // Open the TrackingChild as a modal
+    } catch (error) {
+      console.error('Error fetching entry data:', error);
+    }
+  };
+
+  // handle submit of edits made to activity of user
+  const handleSubmitEdit = async (updatedData) => {
+    const TrackingEntry = Parse.Object.extend("TrackingEntry");
+    const query = new Parse.Query(TrackingEntry);
+
+    try {
+      const entryToUpdate = await query.get(currentEntry.id); // Fetch the entry to update
+      console.log(updatedData.todaysDate)
+      // Update fields
+      await updateTrackingForm(entryToUpdate, updatedData)
+      
+      setIsEditing(false); // Close the modal after saving
+
+      // Refresh the data
+      const updatedEntries = await getAllTrackingEntries(); // Assuming this fetches all entries
+      processTrackingEntries(updatedEntries); // Re-render the table with updated data
+
+      // Set update message
+      alert('Data has been successfully updated.');
+    
+    } catch (error) {
+      console.error('Error updating entry:', error);
+    }
+  };
+
+  // Function to handle asynchronous data when a submit event occurs
+  const handleSubmit = async (event) => {
+
+    event.preventDefault();
+    setIsSubmitted(true); // Set button submit as submitted
+
+    // Get current user
+    const user = Parse.User.current();
+    if (!user) {
+      alert('No user logged in');
+      return;
+    }
+
+    getAllTrackingEntries(user).then((trackingEntries) => {
+      processTrackingEntries(trackingEntries);
+    }).catch((error) => {
+      console.error('Error:', error);
+    });
+  };
+
   // Render the recommendations or a fallback message
   const renderRecommendations = () => {
     if (error) {
@@ -79,8 +205,7 @@ const Overview = () => {
   return (
     <div className="background-radial-gradient">
       <h2 id="subtitle">Recent Summary</h2>
-
-      <br></br>
+      <br></br>          
       {/* List Section */}
       <div className="section-container list-section">
         <h3 className="text-center">Weekly Checklist</h3>
@@ -162,7 +287,32 @@ const Overview = () => {
         {renderRecommendations()}
       </div>
 
+      {/* Activity and Meals Section */}
+      <div className="section-container cards-section">
+        <h3 className="text-center">Activities and Meals</h3>
+        <br></br>
+          <form onSubmit={handleSubmit} className="text-center">
+            <button type="submit" className="btn btn-primary mt-4">View Meals and Activities</button>
+          </form>
+
+          {isSubmitted && (
+            <>
+              <OverviewChild />
+              <button onClick={handleHide} className="btn btn-secondary mt-4">Close</button>
+            </>)
+        }
+        {isEditing && (
+            <TrackingChildUpdate
+              entry={currentEntry}
+              onSave={handleSubmitEdit}
+              onCancel={() => setIsEditing(false)}
+            />
+        )} 
+       {/* <div className="modal"></div> */}
+      </div>
       <br></br>
+
+      
 
     </div>
   );
