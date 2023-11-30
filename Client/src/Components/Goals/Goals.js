@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { createGoalForm } from '../../Common/Services/GoalsService';
+import { createGoalForm, updateGoalForm, fetchUserGoal } from '../../Common/Services/GoalsService';
 import { useNavigate } from 'react-router-dom';
+import Parse from "parse";
+
 
 // Import the child component
 import GoalsChild from './GoalsChild';
@@ -48,22 +50,38 @@ function Goals() {
       return;
     }
 
-    // Now create the data object to be sent
+    // Current user info
+    const currentUser = Parse.User.current();
+    
+    if (!currentUser) {
+      alert('No user is authenticated.');
+      return;
+    }
+
+    // Create Data object to be sent
     const goalData = {
       height: heightValue,
       weight: weightValue,
       age: ageValue,
-      goal
+      goal: goal, 
+      user: currentUser
     };
 
     try {
-      await createGoalForm(goalData);
-      alert('Goal created successfully!');
-      // Navigate with 0 to reload the page and empty the form
+      const existingGoalData = await fetchUserGoal(currentUser);
+      if (existingGoalData) {
+        // If existing goal, update it
+        await updateGoalForm(existingGoalData, goalData);
+        alert('Goal updated successfully!');
+      } else {
+        // If no existing goal, create new
+        await createGoalForm(goalData);
+        alert('Goal created successfully!');
+      }
       navigate(0);
     } catch (error) {
-      console.error('Error creating the goal:', error);
-      alert('Error creating the goal.');
+      console.error('Error in goal operation:', error);
+      alert('Error in goal operation.');
     }
   };
 
