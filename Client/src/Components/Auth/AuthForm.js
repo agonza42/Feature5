@@ -64,9 +64,9 @@ const AuthForm = ({ user, isLogin, onChange, onSubmit }) => {
           />
         </div>
         <div className="form-group">
-          <button type="submit" className="btn btn-primary" onSubmit={onSubmit}>
-            Submit
-          </button>
+        <button type="submit" className="btn btn-primary" autoComplete="off">
+          {isLogin ? "Login" : "Register"}
+        </button>
         </div>
       </div>
     </form>

@@ -53,7 +53,7 @@
 
     /* Setting up a Flexbox grid to have a clean display for our tracking */
     #form {
-        background-color: rgb(189, 189, 251);
+        background-color: radial-gradient(#e0e0e0, #ccadf5);
         font-family: 'Titillium Web', sans-serif;
         text-align: center;
         display: flex;
@@ -65,4 +65,12 @@
         padding-bottom: 20px;
         grid-auto-rows: min-content;
     }
+    
+    .card-body {
+        padding: 1rem; /* Adjust padding to control the height */
+        background: radial-gradient(#e0e0e0, #ccadf5);
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    
 }
