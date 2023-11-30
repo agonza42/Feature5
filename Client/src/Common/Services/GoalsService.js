@@ -75,6 +75,6 @@ export const updateGoalForm = (existingGoalData, newData) => {
 export const fetchUserGoal = (user) => {
   const Goal = Parse.Object.extend("Goal");
   const query = new Parse.Query(Goal);
-  query.equalTo("user", user); // Assuming 'user' is the column name in 'Goal' class
-  return query.first(); // Using first() as each user is expected to have at most one goal
+  query.equalTo("user", user); // get user info
+  return query.first(); // Using first() as each user is expected to have one goal only
 };
