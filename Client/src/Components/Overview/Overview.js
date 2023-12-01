@@ -13,20 +13,20 @@ import '../../Style/Overview.css';
 const Overview = () => {
 
   // State to hold the personalized recommendations
-  const [recommendations, setRecommendations] = useState([]);
+  const [recommendations, setRecommendations] = useState({ case: null, bmr: null, averageCalories: null });
   const [error, setError] = useState(null);
 
   // State to track if we want to display activities
   const [isSubmitted, setIsSubmitted] = useState(false);  
 
-  // state to track edditing activity info
+  // state to track editing activity info
   const [currentEntry, setCurrentEntry] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
 
   const fetchRecommendations = async () => {
 
     const sessionToken = localStorage.getItem('sessionToken');
-    console.log("Session Token in React:", sessionToken);
+    //console.log("Session Token in React:", sessionToken);
 
     // Check if session token is available
     if (!sessionToken) {
@@ -183,23 +183,29 @@ const Overview = () => {
     if (error) {
       return <p>Error loading recommendations: {error}</p>;
     }
-
-    if (!recommendations || recommendations.length === 0) {
-      return <p>Loading recommendations...</p>;
+  
+    if (!recommendations.case) {
+      // If case is null, undefined, or '', show a default message or perform an action
+      return <p>Recommendations not found, make sure to fill out your goals and tracking forms.</p>;
     }
-
-    if (recommendations.message) {
-      return <p>{recommendations.message}</p>;
+  
+    // Render based on the case
+    switch (recommendations.case) {
+      case 'loseWeightUnderBMR':
+        return <p>HTML for lose weight under BMR</p>;
+      case 'loseWeightOverBMR':
+        return <p>HTML for lose weight over BMR</p>;
+      case 'gainWeightUnderBMR':
+        return <p>HTML for gain weight under BMR</p>;
+      case 'gainWeightOverBMR':
+        return <p>HTML for gain weight over BMR</p>;
+      case 'maintainWeight':
+        return <p>HTML for maintain weight</p>;
+      case 'missing':
+        return <p>Something is missing. CASE MISSING</p>;
+      default:
+        return <p>Something is missing. DEFAULT</p>;
     }
-
-    // *** This is a placeholder, adjust based on actual data structure!!! ***
-    /*return (
-      <ul>
-        {recommendations.map((item, index) => (
-          <li key={index}>{item}</li>
-        ))}
-      </ul>
-    );*/
   };
 
   return (
