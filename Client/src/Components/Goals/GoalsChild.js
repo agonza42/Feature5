@@ -5,7 +5,7 @@ function GoalChild({ formData, onChange }) {
   return (
     <div className="container">
       <div className="row justify-content-center">
-        <div className="col-12 col-md-6 offset-md-3">
+        <div className="col-12 col-md-6">
 
           {/* Form for users to enter their personal information and health goals */}
           <div className="form-group mb-3">
