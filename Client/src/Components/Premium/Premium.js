@@ -84,7 +84,7 @@ function Premium() {
               <div className="card-body p-5">
                 <h3 className="text-center">Subscribe to FitSnap+ Premium</h3>
                 <p className="text-center">
-                  Please fill in this form to join the monthly subscription for our premium service!
+                  Please fill in this form to join the monthly subscription for our upcoming premium service set to release early 2024!
                 </p>
                 <form onSubmit={handleSubmit} className="text-center">
                   <PremiumChild
