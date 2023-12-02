@@ -24,7 +24,7 @@ body, html {
 
 
 .background-radial-gradient {
-  background-color: hsl(218, 41%, 25%); /* Lighter than 15% */
+  background-color: hsl(218, 41%, 25%);
   background-image: radial-gradient(650px circle at 0% 0%, hsl(218, 41%, 45%) 15%, hsl(218, 41%, 40%) 35%, hsl(218, 41%, 30%) 75%, hsl(218, 41%, 29%) 80%, transparent 100%),
                     radial-gradient(1250px circle at 100% 100%, hsl(218, 41%, 55%) 15%, hsl(218, 41%, 40%) 35%, hsl(218, 41%, 30%) 75%, hsl(218, 41%, 29%) 80%, transparent 100%);
   font-family: 'Titillium Web', sans-serif;

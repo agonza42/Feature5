@@ -181,7 +181,7 @@ const Overview = () => {
   // Render the recommendations or a fallback message
   const renderRecommendations = () => {
     if (error) {
-      return <p>Error loading recommendations: {error}</p>;
+      return <p>Error loading recommendations: {error}. Make sure the server is running.</p>;
     }
   
     if (!recommendations.case) {
@@ -189,53 +189,218 @@ const Overview = () => {
       return <p>Recommendations not found, make sure to fill out your goals and tracking forms.</p>;
     }
   
-    // Render based on the case
+    // Render based on the case determined in the NodeJS server to determine the HTML output
     switch (recommendations.case) {
       case 'loseWeightUnderBMR':
-        return <p>HTML for lose weight under BMR</p>;
+        return (
+          <div className="container">
+            <div className="row">
+              <h6 className="message">Your recent calorie tracking indicates that you are being successful with your caloric deficit, which means you're losing weight! Great job, keep doing your thing! Here are some personalized recommendations to keep you on track!</h6>
+              <br></br>
+              <div className="col-lg-4 mb-2">
+                <div className="card bg-light mb-3" style={{width: "18rem"}}>
+                  <img src="../images/pilates.jpg" className="card-img-top" alt="HIIT Workout"/>
+                  <div className="card-body">
+                    <h5 className="card-title">15-minute HIIT</h5>
+                    <p className="card-text">HIIT routines are a great way to get rid of stubborn body fat and also provides a quick option!</p>
+                    <a href="https://www.mensjournal.com/health-fitness/best-hiit-workouts" className="btn btn-primary">Examples</a>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-4 mb-2">
+                <div className="card bg-light mb-3" style={{width: "18rem"}}>
+                  <img src="../images/running.jpg" className="card-img-top" alt="Running"/>
+                  <div className="card-body">
+                    <h5 className="card-title">10 km run</h5>
+                    <p className="card-text">Getting into running on a daily basis is a great habit to be active and lose weight!</p>
+                    <a href="https://www.runnersworld.com/uk/training/beginners/a40088632/running-tips-for-beginners/" className="btn btn-primary">Tips</a>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-4 mb-2">
+                <div className="card bg-light mb-3" style={{width: "18rem"}}>
+                  <img src="../images/weights.jpg" className="card-img-top" alt="Weightlifting"/>
+                  <div className="card-body">
+                    <h5 className="card-title">Weightlifting</h5>
+                    <p className="card-text">Strength training is an excellent way to gain muscle and build a healthier lifestyle!</p>
+                    <a href="https://www.muscleandfitness.com/workout-plan/workouts/workout-routines/complete-mf-beginners-training-guide-plan/" className="btn btn-primary">Workouts/Routines</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
       case 'loseWeightOverBMR':
-        return <p>HTML for lose weight over BMR</p>;
+        return (
+          <div className="container">
+            <div className="row">
+              <h6 className="message">Your recent calorie tracking indicates that you are not sticking to your caloric deficit, which means you're not meeting your weight goals. Here are some personalized recommendations to get you back on track!</h6>
+              <br></br>
+              <div className="col-lg-4 mb-2">
+                <div className="card bg-light mb-3" style={{width: "18rem"}}>
+                  <img src="../images/hiit.jpg" className="card-img-top" alt="HIIT Workout"/>
+                  <div className="card-body">
+                    <h5 className="card-title">30-minute HIIT</h5>
+                    <p className="card-text">HIIT routines are a great way to start getting rid of stubborn body fat and have tons of different options to choose from, making them a cardio staple!</p>
+                    <a href="https://www.bodybuilding.com/content/high-intensity-interval-training-the-ultimate-guide.html" className="btn btn-primary">HIIT Guide</a>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-4 mb-2">
+                <div className="card bg-light mb-3" style={{width: "18rem"}}>
+                  <img src="../images/running.jpg" className="card-img-top" alt="Running"/>
+                  <div className="card-body">
+                    <h5 className="card-title">10 km run</h5>
+                    <p className="card-text">Getting into running on a daily basis is a great habit to be active and lose weight!</p>
+                    <a href="https://www.runnersworld.com/uk/training/beginners/a40088632/running-tips-for-beginners/" className="btn btn-primary">Tips</a>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-4 mb-2">
+                <div className="card bg-light mb-3" style={{width: "18rem"}}>
+                  <img src="../images/barbell.jpg" className="card-img-top" alt="Weightlifting"/>
+                  <div className="card-body">
+                    <h5 className="card-title">Weightlifting</h5>
+                    <p className="card-text">Strength training is an excellent way to build muscle and keep it as you lose weight!</p>
+                    <a href="https://www.muscleandfitness.com/workout-plan/workouts/workout-routines/complete-mf-beginners-training-guide-plan/" className="btn btn-primary">Workouts/Routines</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
       case 'gainWeightUnderBMR':
-        return <p>HTML for gain weight under BMR</p>;
+        return (
+          <div className="container">
+            <div className="row">
+              <h6 className="message">Your recent calorie tracking indicates that you are not sticking to your caloric surplus, which means you're not meeting your weight goals. Here are some personalized recommendations to get you back on track!</h6>
+              <br></br>
+              <div className="col-lg-4 mb-2">
+                <div className="card bg-light mb-3" style={{width: "18rem"}}>
+                  <img src="../images/smoothie.jpg" className="card-img-top" alt="Smoothie"/>
+                  <div className="card-body">
+                    <h5 className="card-title">Nutrient-dense & high-calorie foods</h5>
+                    <p className="card-text">Gaining weight doesn't have to mean eating all day! There are some great nutrient-dense and high-calorie food options to help you gain weight cleanly!</p>
+                    <a href="https://www.predatornutrition.com/articlesdetail?cid=high-calorie-foods-for-bulking" className="btn btn-primary">High-Cal Healthy Foods</a>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-4 mb-2">
+                <div className="card bg-light mb-3" style={{width: "18rem"}}>
+                  <img src="../images/time.jpg" className="card-img-top" alt="Time"/>
+                  <div className="card-body">
+                    <h5 className="card-title">Meal scheduling</h5>
+                    <p className="card-text">Scheduling your meals throughout the day is a great way to plan your eating and build a healthy relationship with food!</p>
+                    <a href="https://www.health.state.mn.us/docs/people/wic/nutrition/english/genweightgain.pdf" className="btn btn-primary">Tips</a>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-4 mb-2">
+                <div className="card bg-light mb-3" style={{width: "18rem"}}>
+                  <img src="../images/barbell.jpg" className="card-img-top" alt="Weightlifting"/>
+                  <div className="card-body">
+                    <h5 className="card-title">Weightlifting</h5>
+                    <p className="card-text">Strength training is an excellent way to build muscle and take advantage of the extra calories you're eating in the long-term!</p>
+                    <a href="https://www.muscleandfitness.com/workout-plan/workouts/workout-routines/complete-mf-beginners-training-guide-plan/" className="btn btn-primary">Workouts/Routines</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
       case 'gainWeightOverBMR':
-        return <p>HTML for gain weight over BMR</p>;
+        return (
+          <div className="container">
+            <div className="row">
+              <h6 className="message">Your recent calorie tracking indicates that you are successfully sticking to your caloric surplus, which means you're gaining weight and meeting your weight goals! Great job, keep doing your thing! Here are some personalized recommendations to keep you on track!</h6>
+              <br></br>
+              <div className="col-lg-4 mb-2">
+                <div className="card bg-light mb-3" style={{width: "18rem"}}>
+                  <img src="../images/smoothie.jpg" className="card-img-top" alt="Smoothie"/>
+                  <div className="card-body">
+                    <h5 className="card-title">Nutrient-dense & high-calorie foods</h5>
+                    <p className="card-text">Dirty eating isn't the only way to gain weight! Here are some great high-calorie and nutrient-dense options to keep you on track!</p>
+                    <a href="https://www.predatornutrition.com/articlesdetail?cid=high-calorie-foods-for-bulking" className="btn btn-primary">High-Cal Healthy Foods</a>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-4 mb-2">
+                <div className="card bg-light mb-3" style={{width: "18rem"}}>
+                  <img src="../images/time.jpg" className="card-img-top" alt="Time"/>
+                  <div className="card-body">
+                    <h5 className="card-title">Meal scheduling</h5>
+                    <p className="card-text">Scheduling your meals throughout the day is a great way to stay on track and keep building your healthier relationship with food!</p>
+                    <a href="https://www.health.state.mn.us/docs/people/wic/nutrition/english/genweightgain.pdf" className="btn btn-primary">Tips</a>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-4 mb-2">
+                <div className="card bg-light mb-3" style={{width: "18rem"}}>
+                  <img src="../images/gym.jpg" className="card-img-top" alt="Weightlifting"/>
+                  <div className="card-body">
+                    <h5 className="card-title">Weightlifting</h5>
+                    <p className="card-text">Strength training is an excellent way to keep building muscle and use all the extra energy from the food you're eating!</p>
+                    <a href="https://www.puregym.com/blog/the-best-gym-workout-plan-for-gaining-muscle/" className="btn btn-primary">Gain Muscle Fast</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
       case 'maintainWeight':
-        return <p>HTML for maintain weight</p>;
+        return (
+          <div className="container">
+            <div className="row">
+              <h6 className="message">Your recent calorie tracking indicates that you're staying on track with your weight goals! Just remember to keep track of your calories and weight! Here are some personalized recommendations to help keep you on track!</h6>
+              <br></br>
+              <div className="col-lg-4 mb-2">
+                <div className="card bg-light mb-3" style={{width: "18rem"}}>
+                  <img src="../images/hiit.jpg" className="card-img-top" alt="HIIT Workout"/>
+                  <div className="card-body">
+                    <h5 className="card-title">15-minute HIIT</h5>
+                    <p className="card-text">HIIT routines are a great way to get toned and delete body fat! Also, it provides tons of quick options that can be done anywhere!</p>
+                    <a href="https://www.mensjournal.com/health-fitness/best-hiit-workouts" className="btn btn-primary">Examples</a>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-4 mb-2">
+                <div className="card bg-light mb-3" style={{width: "18rem"}}>
+                  <img src="../images/running.jpg" className="card-img-top" alt="Running"/>
+                  <div className="card-body">
+                    <h5 className="card-title">Marathon Training</h5>
+                    <p className="card-text">Getting into running on a daily basis is a great habit to be active and lose weight, and training for a marathon is an excellent long-term health goal!</p>
+                    <a href="https://www.runnersworld.com/uk/training/marathon/a36969929/successful-marathon-training-rules/" className="btn btn-primary">Training Tips</a>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-4 mb-2">
+                <div className="card bg-light mb-3" style={{width: "18rem"}}>
+                  <img src="../images/gym.jpg" className="card-img-top" alt="Weightlifting"/>
+                  <div className="card-body">
+                    <h5 className="card-title">Weightlifting</h5>
+                    <p className="card-text">Strength training is an excellent way to build muscle and build a healthier lifestyle, even staying at the same body weight! Don't be afraid to lift some weight!</p>
+                    <a href="https://www.muscleandfitness.com/workout-plan/workouts/workout-routines/complete-mf-beginners-training-guide-plan/" className="btn btn-primary">Workouts/Routines</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
       case 'missing':
-        return <p>Something is missing. CASE MISSING</p>;
+        return <h4>Please fill in your goals and track your calories to get personalized recommendations, and make sure the server is running.</h4>;
       default:
-        return <p>Something is missing. DEFAULT</p>;
+        return <h4>Please fill in your goals and track your calories to get personalized recommendations, and make sure the server is running.</h4>;
     }
   };
 
   return (
     <div className="background-radial-gradient">
-      <h2 id="subtitle">Recent Summary</h2>
-      <br></br>          
-      {/* List Section */}
-      <div className="section-container list-section">
-        <h3 className="text-center">Weekly Checklist</h3>
-        <br></br>
-        <ul className="list-group">
-          <li className="list-group-item rounded">
-            <input className="form-check-input me-1" type="checkbox" id="calories" name="calories" value="calories"/>
-            <label htmlFor="calories"> Met daily calorie goal every day</label>
-          </li>
-          <li className="list-group-item rounded">
-            <input className="form-check-input me-1" type="checkbox" id="exercise" name="exercise" value="exercise"/>
-            <label htmlFor="exercise"> 45 minutes of daily exercise every day</label>
-          </li>
-          <li className="list-group-item rounded">
-            <input className="form-check-input me-1" type="checkbox" id="outside" name="outside" value="outside" />
-            <label htmlFor="outside"> 3 workouts done outside in the week</label>
-          </li>
-        </ul>
-      </div>
+      <h2 id="subtitle">Health Overview</h2>
       <br></br>
 
-      {/* Progress Bars Section */}
+      {/* Graph/Chart Section */}
       <div className="section-container progress-section">
-        <h3 className="text-center">Recent Results</h3>
+        <h3 className="text-center">Recent Caloric Results</h3>
           <br></br>
           <div className="progress">
             <div className="progress-bar bg-success" role="progressbar" style={{width: "25%"}} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
@@ -252,50 +417,9 @@ const Overview = () => {
       </div>
       <br></br>
 
-      {/* Cards Section */}
-      <div className="section-container cards-section">
-        <h3 className="text-center">Recommended Plans/Milestones</h3>
-        <br></br>
-        {/*<div className="container">
-          <div className="row">
-            <div className="col-lg-4 mb-2">
-              <div className="card bg-light mb-3" style={{width: "18rem"}}>
-                <img src="../images/pilates.jpg" className="card-img-top" alt="HIIT Workout"/>
-                <div className="card-body">
-                  <h5 className="card-title">15-minute HIIT</h5>
-                  <p className="card-text">HIIT routines are a great way to get rid of body fat and also provides a quick option!</p>
-                  <a href="https://www.mensjournal.com/health-fitness/best-hiit-workouts" className="btn btn-primary">Examples</a>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-4 mb-2">
-              <div className="card bg-light mb-3" style={{width: "18rem"}}>
-                <img src="../images/running.jpg" className="card-img-top" alt="Running"/>
-                <div className="card-body">
-                  <h5 className="card-title">10 km run</h5>
-                  <p className="card-text">Getting into running on a daily basis is a great habit to be active and lose weight!</p>
-                  <a href="https://www.runnersworld.com/uk/training/beginners/a40088632/running-tips-for-beginners/" className="btn btn-primary">Tips</a>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-4 mb-2">
-              <div className="card bg-light mb-3" style={{width: "18rem"}}>
-                <img src="../images/weights.jpg" className="card-img-top" alt="Weightlifting"/>
-                <div className="card-body">
-                  <h5 className="card-title">Weightlifting</h5>
-                  <p className="card-text">Strength training is an excellent way to gain muscle and build a healthier lifestyle!</p>
-                  <a href="https://www.muscleandfitness.com/workout-plan/workouts/workout-routines/complete-mf-beginners-training-guide-plan/" className="btn btn-primary">Workouts/Routines</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> */}
-        {renderRecommendations()}
-      </div>
-
       {/* Activity and Meals Section */}
       <div className="section-container cards-section">
-        <h3 className="text-center">Activities and Meals</h3>
+        <h3 className="text-center">Meal and Activity Overview</h3>
         <br></br>
           <form onSubmit={handleSubmit} className="text-center">
             <button type="submit" className="btn btn-primary mt-4">View Meals and Activities</button>
@@ -314,11 +438,17 @@ const Overview = () => {
               onCancel={() => setIsEditing(false)}
             />
         )} 
-       {/* <div className="modal"></div> */}
       </div>
       <br></br>
 
-      
+      {/* Cards Section */}
+      <div className="section-container cards-section">
+        <h3 className="text-center">Personalized Recommendations</h3>
+        <br></br>
+        {/* Call the render recommendations function to determine what to display */}
+        {renderRecommendations()}
+      </div>
+      <br></br>
 
     </div>
   );

@@ -67,7 +67,7 @@
     }
     
     .card-body {
-        padding: 1rem; /* Adjust padding to control the height */
+        padding: 1rem;
         background: radial-gradient(#e0e0e0, #ccadf5);
         text-align: center;
         box-shadow: 0 4px 8px rgba(0,0,0,0.1);

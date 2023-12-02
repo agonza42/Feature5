@@ -18,7 +18,7 @@ body, html {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 100vh; /* Use viewport height to center form vertically */
+    min-height: 100vh;
 }
 
 /* Title Styling */
@@ -33,7 +33,7 @@ body, html {
       
       
 .background-radial-gradient {
-    background-color: hsl(218, 41%, 25%); /* Lighter than 15% */
+    background-color: hsl(218, 41%, 25%);
     background-image: radial-gradient(650px circle at 0% 0%, hsl(218, 41%, 45%) 15%, hsl(218, 41%, 40%) 35%, hsl(218, 41%, 30%) 75%, hsl(218, 41%, 29%) 80%, transparent 100%),
                         radial-gradient(1250px circle at 100% 100%, hsl(218, 41%, 55%) 15%, hsl(218, 41%, 40%) 35%, hsl(218, 41%, 30%) 75%, hsl(218, 41%, 29%) 80%, transparent 100%);
     font-family: 'Titillium Web', sans-serif;
@@ -91,13 +91,13 @@ body, html {
 /* Card styles for form */
 .card {
     width: 100%;
-    max-width: 500px; /* Maximum width of the form */
-    margin: auto; /* Centers the card horizontally */
-    overflow: hidden; /* Optional: hides any overflow */
+    max-width: 500px;
+    margin: auto;
+    overflow: hidden;
 }
 
 .card-body {
-    padding: 1rem; /* Adjust padding to control the height */
+    padding: 1rem;
     background: radial-gradient(#e0e0e0, #ccadf5);
     text-align: center;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);

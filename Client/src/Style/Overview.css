@@ -54,10 +54,10 @@
       
     /* Additional styles for list and cards */
     .list-group-item {
-        padding: 1rem; /* Increase padding inside list items */
-        border-radius: 0.75rem; /* Rounds the corners */
-        border: 1px solid #ddd; /* Add border to each list item */
-        margin-bottom: 0.5rem; /* Add space between list items */
+        padding: 1rem;
+        border-radius: 0.75rem;
+        border: 1px solid #ddd;
+        margin-bottom: 0.5rem;
         margin: 0.25rem 0;
         width: 100%;
         background: radial-gradient(circle at center, #efeeee 0%, #e0d5d5 100%);
@@ -67,7 +67,7 @@
     .card {
         box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
         transition: 0.3s;
-        border-radius: 0.75rem; /* 12px rounded corners for cards */
+        border-radius: 0.75rem;
         margin-bottom: 1rem;
         margin: 0.5rem;
         text-align: center;
@@ -78,21 +78,21 @@
     }
     
     .card img.card-img-top {
-        border-top-left-radius: 0.75rem; /* 12px rounded corners for image at top of card */
+        border-top-left-radius: 0.75rem;
         border-top-right-radius: 0.75rem;
     }
     
     .card-body {
-        padding: 15px; /* Adjust padding for card body */
+        padding: 15px;
     }
 
     /* General container styling for all sections */
     .section-container {
-        width: 80%; /* Sets the width to 80% of the parent width */
-        margin: 1rem auto; /* Centers the container and adds margin on the top and bottom */
-        padding: 2rem; /* Adds padding inside the container */
-        border-radius: 0.75rem; /* Rounds the corners */
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Adds shadow for depth */
+        width: 80%;
+        margin: 1rem auto;
+        padding: 2rem;
+        border-radius: 0.75rem;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
 
     /* Styles for the list section */
@@ -113,5 +113,9 @@
 
     .cards-section .card-body {
         background: radial-gradient(circle at center, #efeeee 0%, #e0d5d5 100%);
+    }
+
+    .message {
+        text-align: center;
     }
 }
