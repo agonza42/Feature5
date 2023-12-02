@@ -84,15 +84,21 @@ const Overview = () => {
       row.insertCell(5).textContent = entry.get('exerciseCals');
 
       // Add a cell for the edit button
-      const editCell = row.insertCell(-1); 
+      const editCell = row.insertCell(-1);
+      editCell.classList.add('px-2');
+      editCell.classList.add('edit-cell'); 
       const editButton = document.createElement('button');
+      editButton.classList.add('btn', 'btn-info', 'btn-sm');
       editButton.textContent = 'Edit';
       editButton.onclick = () => handleEdit(entry, index);
       editCell.appendChild(editButton);
 
       // Add a cell for the delete button
       const deleteCell = row.insertCell(-1);
+      editCell.classList.add('px-2');
+      deleteCell.classList.add('delete-cell');
       const deleteButton = document.createElement('button');
+      deleteButton.classList.add('btn', 'btn-danger', 'btn-sm');
       deleteButton.textContent = 'Delete';
       deleteButton.onclick = () => handleDelete(entry, index);
       deleteCell.appendChild(deleteButton);
@@ -418,7 +424,7 @@ const Overview = () => {
       <br></br>
 
       {/* Activity and Meals Section */}
-      <div className="section-container cards-section">
+      <div className="section-container meals-section">
         <h3 className="text-center">Meal and Activity Overview</h3>
         <br></br>
           <form onSubmit={handleSubmit} className="text-center">
