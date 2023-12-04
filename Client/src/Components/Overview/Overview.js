@@ -9,6 +9,10 @@ import TrackingChildUpdate from './../Tracking/TrackingChildUpdate';
 // Import the CSS file
 import '../../Style/Overview.css';
 
+// Import Chart.js
+import { Line } from 'react-chartjs-2';
+import { Chart as ChartJS } from 'chart.js/auto';
+
 /* OVERVIEW MODULE WITH STATEFUL PARENT AND STATELESS CHILD */
 const Overview = () => {
 
@@ -69,6 +73,67 @@ const Overview = () => {
     setIsSubmitted(false); // Hide the OverviewChild component
   };
 
+  // CHART.JS
+
+  // State for Chart Data
+  const [chartData, setChartData] = useState({
+    labels: [],
+    datasets: [
+      {
+        label: 'Calories Consumed',
+        data: [],
+        borderColor: 'rgb(54, 162, 235)',
+        backgroundColor: 'rgba(54, 162, 235, 0.5)',
+      },
+      {
+        label: 'Calories Burned',
+        data: [],
+        borderColor: 'rgb(255, 99, 132)',
+        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+      }
+    ]
+  });
+
+  // Process Tracking Enteries of User
+  
+  const processChartData = (trackingEntries) => {
+    const labels = [];
+    const caloriesConsumed = [];
+    const caloriesBurned = [];
+  
+    trackingEntries.forEach(entry => {
+      labels.push(entry.get('todaysDate').toLocaleDateString());
+      const totalConsumed = entry.get('breakfastCals') + entry.get('lunchCals') + entry.get('dinnerCals') + entry.get('snacksCals');
+      caloriesConsumed.push(totalConsumed);
+      caloriesBurned.push(entry.get('exerciseCals'));
+    });
+  
+    setChartData({
+      ...chartData,
+      labels,
+      datasets: [
+        { ...chartData.datasets[0], data: caloriesConsumed },
+        { ...chartData.datasets[1], data: caloriesBurned }
+      ]});
+  };
+
+  // Fetch Data and Update Chart:
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Fetch tracking entries
+        const user = Parse.User.current();
+        const entries = await getAllTrackingEntries(user); 
+
+        processChartData(entries);
+      } catch (error) {
+        console.error('Error fetching tracking entries:', error);
+      }
+    };
+  
+    fetchData();
+  }, []); // Empty dependency array to run only on component mount
+  
   // ProcessTrackingEntries - takes an array of objects as an argument and populates a table with data.
   function processTrackingEntries(trackingEntries) {
     const tableBody = document.getElementById('entriesTable').getElementsByTagName('tbody')[0];
@@ -118,7 +183,8 @@ const Overview = () => {
       console.log("Entry deleted:", entry.id);
       
       // Refresh the data
-      const updatedEntries = await getAllTrackingEntries(); // Assuming this fetches all entries
+      const user = Parse.User.current();
+      const updatedEntries = await getAllTrackingEntries(user); // Assuming this fetches all entries
       processTrackingEntries(updatedEntries); // Re-render the table with updated data
       
     } catch (error) {
@@ -153,7 +219,8 @@ const Overview = () => {
       setIsEditing(false); // Close the modal after saving
 
       // Refresh the data
-      const updatedEntries = await getAllTrackingEntries(); // Assuming this fetches all entries
+      const user = Parse.User.current();
+      const updatedEntries = await getAllTrackingEntries(user); // Assuming this fetches all entries
       processTrackingEntries(updatedEntries); // Re-render the table with updated data
 
       // Set update message
@@ -407,19 +474,13 @@ const Overview = () => {
       {/* Graph/Chart Section */}
       <div className="section-container progress-section">
         <h3 className="text-center">Recent Caloric Results</h3>
-          <br></br>
-          <div className="progress">
-            <div className="progress-bar bg-success" role="progressbar" style={{width: "25%"}} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+          <div className="section-container chart-section">
+            <h3 className="text-center">Calorie Intake Over Time</h3>
+            <br />
+            <Line data={chartData} />
           </div>
-          <div className="progress">
-            <div className="progress-bar bg-info" role="progressbar" style={{width: "50%"}} aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-          <div className="progress">
-            <div className="progress-bar bg-warning" role="progressbar" style={{width: "75%"}} aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-          <div className="progress">
-            <div className="progress-bar bg-danger" role="progressbar" style={{width: "100%"}} aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
+
+          
       </div>
       <br></br>
 
