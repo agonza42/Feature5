@@ -114,6 +114,9 @@
     .cards-section .card-body {
         background: radial-gradient(circle at center, #efeeee 0%, #e0d5d5 100%);
     }
+    .progress-section .chart-section {
+        background: radial-gradient(circle at center, #efeeee 0%, #e0d5d5 100%);
+    }
 
     /* Styles for the meals section */
     .meals-section {
