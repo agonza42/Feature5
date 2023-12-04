@@ -14,7 +14,6 @@ const Main = () => {
         personalized fitness journey!
       </h4>
 
-      {/* IN PROGRESS: IMAGE CAROUSEL */}
       <div id="staticImageContainer" className="static-slide">
         <img className="d-block w-100" src="/Images/running.jpg" alt="Running"></img>
       </div>
