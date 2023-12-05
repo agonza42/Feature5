@@ -409,7 +409,7 @@ const Overview = () => {
               </div>
               <div className="col-lg-4 mb-2">
                 <div className="card bg-light mb-3" style={{width: "18rem"}}>
-                  <img src="../images/gym.jpg" className="card-img-top" alt="Weightlifting"/>
+                  <img src="../images/gym.png" className="card-img-top" alt="Weightlifting"/>
                   <div className="card-body">
                     <h5 className="card-title">Weightlifting</h5>
                     <p className="card-text">Strength training is an excellent way to keep building muscle and use all the extra energy from the food you're eating!</p>
@@ -448,7 +448,7 @@ const Overview = () => {
               </div>
               <div className="col-lg-4 mb-2">
                 <div className="card bg-light mb-3" style={{width: "18rem"}}>
-                  <img src="../images/gym.jpg" className="card-img-top" alt="Weightlifting"/>
+                  <img src="../images/gym.png" className="card-img-top" alt="Weightlifting"/>
                   <div className="card-body">
                     <h5 className="card-title">Weightlifting</h5>
                     <p className="card-text">Strength training is an excellent way to build muscle and build a healthier lifestyle, even staying at the same body weight! Don't be afraid to lift some weight!</p>
