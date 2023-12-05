@@ -9,6 +9,22 @@ function GoalChild({ formData, onChange }) {
 
           {/* Form for users to enter their personal information and health goals */}
           <div className="form-group mb-3">
+            <label htmlFor="gender"><b>Gender: </b></label>
+            <select
+              className="form-select"
+              name="gender"
+              id="gender"
+              value={formData.gender || ''}
+              onChange={onChange}
+              required
+            >
+              <option value="">-- select an option --</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </div>
+
+          <div className="form-group mb-3">
             <label htmlFor="height"><b>Height: </b></label>
             <input
               type="number"

@@ -12,6 +12,7 @@ import '../../Style/Goals.css';
 
 function Goals() {
   const [formData, setFormData] = useState({
+    gender: '',
     height: '',
     weight: '',
     age: '',
@@ -29,7 +30,7 @@ function Goals() {
 
     setFormData(prevState => ({
       ...prevState,
-      [name]: name === 'age' || name === 'height' || name === 'weight' ? parseFloat(value) : value,
+      [name]: (name === 'age' || name === 'height' || name === 'weight') ? parseFloat(value) : value,
     }));
   };
 
@@ -39,13 +40,13 @@ function Goals() {
     event.preventDefault();
     
     // Get the formData and ensure proper variable types
-    const { height, weight, age, goal } = formData;
+    const { gender, height, weight, age, goal } = formData;
     const heightValue = parseFloat(height);
     const weightValue = parseFloat(weight);
     const ageValue = parseInt(age);
 
     // Validate the values
-    if (isNaN(heightValue) || isNaN(weightValue) || isNaN(ageValue) || !goal) {
+    if (!gender || isNaN(heightValue) || isNaN(weightValue) || isNaN(ageValue) || !goal) {
       alert('Please provide valid input values.');
       return;
     }
@@ -60,6 +61,7 @@ function Goals() {
 
     // Create Data object to be sent
     const goalData = {
+      gender: gender,
       height: heightValue,
       weight: weightValue,
       age: ageValue,

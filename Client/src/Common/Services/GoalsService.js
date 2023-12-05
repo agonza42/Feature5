@@ -4,7 +4,7 @@ import Parse from "parse";
 export const createGoalForm = (formData) => {
 
   // Destructure the values
-  const { height, weight, age, goal, user} = formData;
+  const { gender, height, weight, age, goal, user} = formData;
   console.log(formData);
   
   console.log("Creating Goal:", Goal);
@@ -12,6 +12,7 @@ export const createGoalForm = (formData) => {
   const goalform = new Goal();
   
   // Using setter to UPDATE the object
+  goalform.set("gender", gender);
   goalform.set("height", height);
   goalform.set("weight", weight);
   goalform.set("age", age);
@@ -63,6 +64,7 @@ export const removeGoal = (id) => {
 
 // UPDATE operation - update existing form
 export const updateGoalForm = (existingGoalData, newData) => {
+  existingGoalData.set('gender', newData.gender); 
   existingGoalData.set('height', newData.height); 
   existingGoalData.set('weight', newData.weight);
   existingGoalData.set('age', newData.age);

@@ -16,14 +16,23 @@ app.use(cors());
 const port = 4000;
 
 // Function to calculate BMR
-const calculateBMR = (weight, height, age) => {
-    if (isNaN(weight) || isNaN(height) || isNaN(age)) {
-        console.error('Invalid input for BMR calculation');
-        return NaN;
+const calculateBMR = (weight, height, age, gender) => {
+
+    // Check for invalid inputs
+    if (isNaN(weight) || isNaN(height) || isNaN(age) || !gender) {
+      console.error('Invalid input for BMR calculation');
+      return NaN;
     }
-    
-    // Convert weight from kg to pounds and height from cm to inches for the calculation
-    return 66.5 + (13.75 * weight) + (5.003 * height) - (6.75 * age);
+  
+    // BMR formulas based on gender
+    if (gender === 'male') {
+      // BMR for men
+      return 66.5 + (13.75 * weight) + (5.003 * height) - (6.75 * age);
+    } else {
+      // BMR for women
+      return 655.1 + (9.563 * weight) + (1.850 * height) - (4.676 * age);
+    }
+
 };
 
 // NodeJS endpoint to get personalized recommendations
@@ -32,13 +41,20 @@ app.get('/personalized-recommendations', async (req, res) => {
 
     try {
 
-        // Get the user object using the session token
-        const userQuery = new Parse.Query(Parse.User);
-        const currentUser = await userQuery.first({ sessionToken: sessionToken, useMasterKey: true });
+        // Fetch the session object using the session token
+        const sessionQuery = new Parse.Query(Parse.Session);
+        const session = await sessionQuery.equalTo("sessionToken", sessionToken).first({ useMasterKey: true });
+        if (!session) {
+            return res.status(404).send('Session not found.');
+        }
+
+        // Get the user from the session
+        const currentUser = session.get('user');
         if (!currentUser) {
             return res.status(404).send('User not found.');
         }
         //console.log("User: ", currentUser);
+        //console.log("Token: ", session);
 
         // Query for the user's goal
         const Goal = Parse.Object.extend("Goal");
@@ -73,14 +89,15 @@ app.get('/personalized-recommendations', async (req, res) => {
         });
         const averageCalories = trackingEntries.length > 0 ? totalCalories / trackingEntries.length : 0;
 
-
+        const userGender = userGoalObject.get('gender');
         const userWeight = userGoalObject.get('weight');
         const userHeight = userGoalObject.get('height');
         const userAge = userGoalObject.get('age');
 
-        //console.log(`Weight: ${userWeight}, Height: ${userHeight}, Age: ${userAge}`);
+        //console.log(`Weight: ${userWeight}, Height: ${userHeight}, Age: ${userAge}, Gender: ${userGender}`);
 
-        const bmr = calculateBMR(Number(userWeight), Number(userHeight), Number(userAge));
+        const bmr = calculateBMR(Number(userWeight), Number(userHeight), Number(userAge), userGender);
+    
 
         //console.log("BMR: ", bmr);
         //console.log("Cals: ", averageCalories);
